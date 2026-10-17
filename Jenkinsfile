@@ -37,11 +37,12 @@ pipeline {
     }
 
     post {
-        success {
-            echo 'CI Pipeline completed successfully!'
-        }
-        failure {
-            echo 'CI Pipeline failed. Check the console output.'
-        }
+    success {
+        archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+        echo 'CI Pipeline completed successfully!'
     }
+    failure {
+        echo 'CI Pipeline failed. Check the console output.'
+    }
+}
 }
