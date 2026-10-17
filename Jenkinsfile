@@ -34,6 +34,13 @@ pipeline {
                 sh 'java -cp target/classes com.example.App'
             }
         }
+        stage('Deploy') {
+    steps {
+        sh 'mkdir -p "$HOME/deployments/jenkins-cicd-demo"'
+        sh 'cp target/*.jar "$HOME/deployments/jenkins-cicd-demo/"'
+        sh 'ls -lh "$HOME/deployments/jenkins-cicd-demo/"'
+    }
+}
     }
 
     post {
