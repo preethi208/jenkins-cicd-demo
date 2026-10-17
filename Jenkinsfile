@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        PATH+TOOLS = '/opt/homebrew/bin:/opt/homebrew/opt/openjdk@21/bin'
         JAVA_HOME = '/opt/homebrew/opt/openjdk@21'
+        PATH = "/opt/homebrew/bin:/opt/homebrew/opt/openjdk@21/bin:${env.PATH}"
     }
 
     stages {
