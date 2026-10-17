@@ -1,11 +1,25 @@
 pipeline {
     agent any
 
+    environment {
+        PATH+TOOLS = '/opt/homebrew/bin:/opt/homebrew/opt/openjdk@21/bin'
+        JAVA_HOME = '/opt/homebrew/opt/openjdk@21'
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                echo 'Source code is managed in GitHub'
+                echo 'Checking out source code from GitHub'
                 checkout scm
+            }
+        }
+
+        stage('Verify Tools') {
+            steps {
+                sh 'which java'
+                sh 'java -version'
+                sh 'which mvn'
+                sh 'mvn -version'
             }
         }
 
